@@ -60,6 +60,8 @@ var obj={
 
 observe(obj)
 console.log(obj.name)
-obj.key='22'
-observe(obj)
-console.log(obj.key)
+obj.name={
+  age:'29'
+}
+
+console.log(obj.name.age)
