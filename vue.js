@@ -34,15 +34,13 @@ var property = Object.getOwnPropertyDescriptor(obj,key)
 
     }
 
-
-
  })
-
 
 }
 
 
 
-
-obj.key='111'
-console.log(obj.key)
+defineReactive(obj,'name',100)
+obj.name='111'
+console.log(obj.name)
+console.log(11);
