@@ -18,20 +18,22 @@ var obj={
     }
   }
 
-  function defineReactive(obj,key,val){  
 
-  var property = Object.getOwnPropertyDescriptor(obj,key)
-    if(property&&property.configurable===false){  
+
+  function defineReactive(obj,key,val){  //对对象一个属性的配置
+
+  var property = Object.getOwnPropertyDescriptor(obj,key) //取出对象属性的自有属性不在原型链中的
+    if(property&&property.configurable===false){  // 自有属性存在且可以配置
     	return 
     }
-   var getter = property&&property.get //undfined 或者get()
+   var getter = property&&property.get //自有属性中的get存在或者 ：&& 取值的返回 undfined 或者get()的值 
    var setter = property&&property.set
-   Object.defineProperty(obj,key,{
+   Object.defineProperty(obj,key,{   // 对对象的属性 进行get 和set设置
       configurable:true,
       enumerable:true,
       get:function(){
-      	console.log('获取')
-          var value = getter ? getter.call(obj) : val;
+      	console.log('获取')        
+          var value = getter ? getter.call(obj) : val; //执行完以后这些变量不会被销毁
 
       	return value  
        },
@@ -55,7 +57,7 @@ var obj={
     if(!value || typeof value !== 'object') {
       return;
     }
-    return new Observer(value);
+    return new Observer(value);// 实力化
   }
 
 observe(obj)
